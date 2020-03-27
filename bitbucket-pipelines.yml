@@ -2,6 +2,6 @@ pipelines:
   branches:
     lesson-1:
       - step:
-        name: Just run a simple echo
-        script:
-          - echo "hello world!"
+          name: Just a simple echo!
+          script:
+            - echo "Hello world!"
