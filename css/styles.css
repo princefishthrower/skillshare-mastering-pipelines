@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+body {
+  font-family: "Baloo 2", sans-serif;
+}
+
+.copyright {
+  background-color: #AAAAAA;
+}
+.copyright p {
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  line-height: 2.5;
+  font-size: 0.9em;
+}
+.copyright span.small {
+  font-size: 0.7em;
+}
+
+.svg-icon {
+  display: inline-block;
+  fill: currentColor !important;
+  vertical-align: middle;
+  line-height: 1em;
+  height: 1em;
+  width: 1em;
+}
+
+div.large-triangle {
+  z-index: -1;
+}
+div.large-triangle svg {
+  position: absolute;
+  display: block;
+  right: -600px;
+  bottom: -98%;
+  width: 1100px;
+  height: 1100px;
+  -webkit-transform: translate(0) rotate(42deg);
+  -ms-transform: translate(0) rotate(42deg);
+  transform: translate(0) rotate(42deg);
+}
+
+.navbar {
+  background-color: #f0f0f0;
+}
+
+.navbar-brand {
+  padding: 0;
+  transition: filter 0.5s;
+}
+.navbar-brand img {
+  height: 90px;
+  padding: 10px 0;
+}
+.navbar-brand:hover {
+  -webkit-filter: grayscale(0.4);
+  filter: grayscale(0.4);
+}
+
+.navbar-nav {
+  font-size: 1.3em;
+}
+.navbar-nav a {
+  color: #AAAAAA;
+  font-weight: 600;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.navbar-nav a:hover {
+  border-bottom: 5px solid #000000;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.navbar-toggler {
+  font-size: 1.3em;
+  color: #AAAAAA;
+  font-weight: 600;
+}
+.navbar-toggler:hover {
+  color: #000000;
+}
+
+.featurette {
+  margin-top: 7rem;
+  margin-bottom: 7rem;
+}
+.featurette .text {
+  padding: 40px;
+}
+.featurette h4 {
+  color: #AAAAAA;
+  font-size: 1.1rem;
+}
+.featurette img {
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 0px 25px -12px #666;
+  -moz-box-shadow: 0px 0px 25px -12px #666;
+  box-shadow: 0px 0px 25px -12px #666;
+  transition: transform 0.5s ease;
+}
+.featurette img:hover {
+  transform: scale(1.03);
+}
+.featurette .action-button {
+  margin-top: 1rem;
+}
+
+.featurette-divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+section.page-header {
+  background-color: #f0f0f0;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+section.page-header div.container {
+  padding: 2rem 1rem;
+}
+section.page-header div.content {
+  padding: 10px 0;
+  text-align: center;
+  color: #444;
+}
+section.page-header div.content h1 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+section.page-header div.content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+a.action-button {
+  cursor: pointer;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  padding: 0 0 0 16px;
+  background: #AAAAAA;
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background 0.5s ease;
+}
+a.action-button span {
+  display: inline-block;
+  color: #f0f0f0;
+  background-color: #d6d6d6;
+  padding: 10px 16px;
+  margin-left: 12px;
+  border-radius: 7px;
+  transition: background 0.5s ease, padding 0.8s ease;
+}
+a.action-button:hover {
+  color: #fff;
+  background: #000000;
+}
+a.action-button:hover span {
+  color: #fff;
+  animation: wiggle 0.5s ease-in-out;
+  background: #000000;
+  padding: 10px 10px 10px 22px;
+}
+
+footer {
+  background-color: #f0f0f0;
+  padding: 40px 0 20px 0;
+}
+
+@media (max-width: 767.98px) {
+  .featurette {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .featurette a {
+    display: none;
+    visibility: hidden;
+  }
+  .featurette .text {
+    padding-bottom: 0;
+  }
+}
