@@ -5,3 +5,19 @@ pipelines:
           name: Just a simple echo!
           script:
             - echo "Hello world!"
+    lesson-2:
+      - step:
+          name: Somewhat fake build process
+          script:
+            - rsync -av --progress . dist --exclude dist
+          artifacts:
+            - dist/**
+      - step:
+          name: Deploy dist folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-scp-test'
+                LOCAL_PATH: 'dist/*'
