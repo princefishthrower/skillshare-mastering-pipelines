@@ -40,4 +40,4 @@ pipelines:
       - step:
           name: Statically serve via server-handler and expose it to internet via ngrok
           script:
-            - ssh $USER@$SERVER '/bin/bash deploy.sh'
+            - ssh $USER@$SERVER 'cd /var/www/skillshare-scp-test/dist && /bin/bash deploy.sh'
