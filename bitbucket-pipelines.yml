@@ -60,4 +60,4 @@ pipelines:
       - step:
           name: Statically serve via server-handler and expose it to internet via ngrok
           script:
-            - ssh $USER@$SERVER 'cd /var/www/skillshare-scp-test && /bin/bash deploy.sh $SLACK_WEBHOOK_URL'
+            - ssh $USER@$SERVER "cd /var/www/skillshare-scp-test && /bin/bash deploy.sh $SLACK_WEBHOOK_URL"
