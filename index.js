@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 function sendSlackMessage(message) {
   fetch(
-    "https://hooks.slack.com/services/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",
+    process.env.SLACK_WEBHOOK_URL,
     {
       method: "POST",
       headers: {
