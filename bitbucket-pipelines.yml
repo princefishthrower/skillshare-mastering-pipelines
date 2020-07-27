@@ -21,3 +21,23 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-scp-test'
                 LOCAL_PATH: 'dist/*'
+    lesson-3:
+      - step:
+          name: Somewhat fake build process
+          script:
+            - rsync -av --progress . dist --exclude dist
+          artifacts:
+            - dist/**
+      - step:
+          name: Deploy dist folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-scp-test'
+                LOCAL_PATH: 'dist/*'
+      - step:
+          name: Statically serve via server-handler and expose it to internet via ngrok
+          script:
+            - ssh $USER@$SERVER 'cd /var/www/skillshare-scp-test && npm install --save ngrok server-handler && node index.js'
