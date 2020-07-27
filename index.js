@@ -14,7 +14,7 @@ server.listen(5000, () => {
 // Part 2 - use ngrok to expose port 5000 to internet
 async function start() {
     const url = await ngrok.connect(5000);
-    console.log("Ngrok tunnel to port 5000 exposed at:" + url);
+    console.log("Ngrok tunnel to port 5000 exposed at: " + url);
 }
 
 start();

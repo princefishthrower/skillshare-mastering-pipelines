@@ -40,4 +40,4 @@ pipelines:
       - step:
           name: Statically serve via server-handler and expose it to internet via ngrok
           script:
-            - ssh $USER@$SERVER 'cd /var/www/skillshare-scp-test && npm install --save ngrok server-handler && node index.js'
+            - ssh $USER@$SERVER 'cd /var/www/skillshare-scp-test && npm install --save serve-handler ngrok && node index.js'
