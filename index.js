@@ -30,12 +30,3 @@ server.listen(env.port, () => {
   console.log("Running at http://localhost:" + env.port);
   sendSlackMessage("Running at http://localhost:" + env.port);
 });
-
-// Part 2 - use ngrok to expose port env.port to internet
-async function start() {
-  const url = await ngrok.connect(env.port);
-  console.log("Ngrok tunnel to port " + env.port + " (Site name: + " + env.siteName + ") exposed at: " + url);
-  sendSlackMessage("Ngrok tunnel to port " + env.port + " (Site name: + " + env.siteName + ") exposed at: " + url);
-}
-
-start();
