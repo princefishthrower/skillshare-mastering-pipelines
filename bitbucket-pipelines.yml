@@ -4,9 +4,9 @@ pipelines:
   branches:
     lesson-5/staging:
       - step:
-        name: Copy staging environment to .env.json
-        script:
-          - cp src/env/.env.staging.json src/env/.env.json
+          name: Copy staging environment to .env.json
+          script:
+            - cp src/env/.env.staging.json src/env/.env.json
       - step:
           name: A REAL build process!
           caches:
@@ -46,9 +46,9 @@ pipelines:
                 LOCAL_PATH: 'index.js'
     lesson-5/master:
       - step:
-        name: Copy staging environment to .env.json
-        script:
-          - cp src/env/.env.master.json src/env/.env.json
+          name: Copy staging environment to .env.json
+          script:
+            - cp src/env/.env.master.json src/env/.env.json
       - step:
           name: A REAL build process!
           caches:
