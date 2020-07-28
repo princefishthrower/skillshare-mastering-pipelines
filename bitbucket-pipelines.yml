@@ -14,9 +14,10 @@ pipelines:
           script:
             - npm install
             - npm run build
+            - tar -zcf node_modules.tar.gz node_modules/
           artifacts:
             - build/**
-            - node_modules/**
+            - node_modules.tar.gz
             - index.js
       - step:
           name: Deploy build folder to server via SCP
@@ -28,14 +29,14 @@ pipelines:
                 REMOTE_PATH: '/var/www/skillshare-typescript-staging/build'
                 LOCAL_PATH: 'build/*'
       - step:
-          name: Deploy node_modules folder to server via SCP
+          name: Deploy node_modules.tar.gz tarball to server via SCP
           script:
             - pipe: atlassian/scp-deploy:0.3.3
               variables:
                 USER: $USER
                 SERVER: $SERVER
-                REMOTE_PATH: '/var/www/skillshare-typescript-staging/node_modules'
-                LOCAL_PATH: 'node_modules/*'
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging'
+                LOCAL_PATH: 'node_modules.tar.gz'
       - step:
           name: Deploy index.js file to server via SCP
           script:
@@ -45,6 +46,10 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-typescript-staging'
                 LOCAL_PATH: 'index.js'
+      - step:
+          name: Unpack tarball via SSH
+          script:
+            - ssh $USER@$SERVER 'cd /var/www/skillshare-typescript-staging && tar -zxf node_modules.tar.gz'
     lesson-5/master:
       - step:
           name: Copy staging environment to .env.json
@@ -57,9 +62,10 @@ pipelines:
           script:
             - npm install
             - npm run build
+            - tar -zcf node_modules.tar.gz node_modules/
           artifacts:
             - build/**
-            - node_modules/**
+            - node_modules.tar.gz
             - index.js
       - step:
           name: Deploy build folder to server via SCP
@@ -71,14 +77,14 @@ pipelines:
                 REMOTE_PATH: '/var/www/skillshare-typescript-master/build'
                 LOCAL_PATH: 'build/*'
       - step:
-          name: Deploy node_modules folder to server via SCP
+          name: Deploy node_modules.tar.gz tarball to server via SCP
           script:
             - pipe: atlassian/scp-deploy:0.3.3
               variables:
                 USER: $USER
                 SERVER: $SERVER
-                REMOTE_PATH: '/var/www/skillshare-typescript-master/node_modules'
-                LOCAL_PATH: 'node_modules/*'
+                REMOTE_PATH: '/var/www/skillshare-typescript-master'
+                LOCAL_PATH: 'node_modules.tar.gz'
       - step:
           name: Deploy index.js file to server via SCP
           script:
@@ -88,3 +94,7 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-typescript-master'
                 LOCAL_PATH: 'index.js'
+      - step:
+          name: Unpack tarball via SSH
+          script:
+            - ssh $USER@$SERVER 'cd /var/www/skillshare-typescript-master && tar -zxf node_modules.tar.gz'
