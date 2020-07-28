@@ -7,6 +7,8 @@ pipelines:
           name: Copy staging environment to .env.json
           script:
             - cp src/env/.env.staging.json src/env/.env.json
+          artifacts:
+            - src/env/.env.json
       - step:
           name: A REAL build process!
           caches:
@@ -19,7 +21,6 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
-            - src/env/.env.json
       - step:
           name: Deploy build folder to server via SCP
           script:
@@ -65,6 +66,8 @@ pipelines:
           name: Copy staging environment to .env.json
           script:
             - cp src/env/.env.master.json src/env/.env.json
+          artifacts:
+            - src/env/.env.json
       - step:
           name: A REAL build process!
           caches:
@@ -77,7 +80,6 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
-            - src/env/.env.json
       - step:
           name: Deploy build folder to server via SCP
           script:
