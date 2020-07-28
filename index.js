@@ -1,7 +1,6 @@
 const env = require('./src/env/.env.json');
 const handler = require("serve-handler");
 const http = require("http");
-const ngrok = require("ngrok");
 const fetch = require("node-fetch");
 
 function sendSlackMessage(message) {
