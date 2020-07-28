@@ -19,6 +19,7 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
+            - src/env/.env.json
       - step:
           name: Deploy build folder to server via SCP
           script:
@@ -28,6 +29,15 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-typescript-staging/build'
                 LOCAL_PATH: 'build/*'
+      - step:
+          name: Deploy env file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging/src/env'
+                LOCAL_PATH: 'src/env/.env.json'
       - step:
           name: Deploy node_modules.tar.gz tarball to server via SCP
           script:
@@ -67,6 +77,7 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
+            - src/env/.env.json
       - step:
           name: Deploy build folder to server via SCP
           script:
@@ -76,6 +87,15 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-typescript-master/build'
                 LOCAL_PATH: 'build/*'
+      - step:
+          name: Deploy env file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-master/src/env'
+                LOCAL_PATH: 'src/env/.env.json'
       - step:
           name: Deploy node_modules.tar.gz tarball to server via SCP
           script:

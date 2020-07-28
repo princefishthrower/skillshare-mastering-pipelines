@@ -1,5 +1,4 @@
-import env from './src/env/.env.json';
-
+const env = require('./src/env/.env.json');
 const handler = require("serve-handler");
 const http = require("http");
 const ngrok = require("ngrok");
