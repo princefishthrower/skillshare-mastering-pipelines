@@ -73,7 +73,7 @@ pipelines:
             - ssh $USER@$SERVER 'cd /var/www/skillshare-typescript-staging && tar -zxf node_modules.tar.gz'
     lesson-5/master:
       - step:
-          name: Copy staging environment to .env.json
+          name: Copy master environment to .env.json
           script:
             - cp src/env/.env.master.json src/env/.env.json
           artifacts:
