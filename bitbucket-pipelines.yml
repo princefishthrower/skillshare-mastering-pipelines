@@ -12,6 +12,7 @@ pipelines:
           caches:
             - node
           script:
+            - npm install
             - npm run build
           artifacts:
             - build/**
@@ -54,6 +55,7 @@ pipelines:
           caches:
             - node
           script:
+            - npm install
             - npm run build
           artifacts:
             - build/**
