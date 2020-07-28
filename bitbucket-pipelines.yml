@@ -15,7 +15,7 @@ pipelines:
             - node
           script:
             - npm install
-            - export npm_config_homepage=skillshare-typescript-staging/
+            - export npm_config_homepage=https://chrisfrew.in/skillshare-typescript-staging
             - npm run build
             - tar -zcf node_modules.tar.gz node_modules/
           artifacts:
@@ -85,7 +85,7 @@ pipelines:
             - node
           script:
             - npm install
-            - export npm_config_homepage=skillshare-typescript-master/
+            - export npm_config_homepage=https://chrisfrew.in/skillshare-typescript-master
             - npm run build
             - tar -zcf node_modules.tar.gz node_modules/
           artifacts:
