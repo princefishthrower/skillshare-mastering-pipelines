@@ -8,7 +8,7 @@ pipelines:
           script:
             - cp src/env/.env.staging.json src/env/.env.json
           artifacts:
-            - src/env/.env.json
+            - src/env/.env.json            
       - step:
           name: A REAL build process!
           caches:
@@ -21,6 +21,7 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
+            - .foreverignore
       - step:
           name: Deploy build folder to server via SCP
           script:
@@ -58,6 +59,15 @@ pipelines:
                 REMOTE_PATH: '/var/www/skillshare-typescript-staging'
                 LOCAL_PATH: 'index.js'
       - step:
+          name: Deploy .foreverignore file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging'
+                LOCAL_PATH: '.foreverignore'
+      - step:
           name: Unpack tarball via SSH
           script:
             - ssh $USER@$SERVER 'cd /var/www/skillshare-typescript-staging && tar -zxf node_modules.tar.gz'
@@ -80,6 +90,7 @@ pipelines:
             - build/**
             - node_modules.tar.gz
             - index.js
+            - .foreverignore
       - step:
           name: Deploy build folder to server via SCP
           script:
@@ -116,6 +127,15 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/skillshare-typescript-master'
                 LOCAL_PATH: 'index.js'
+      - step:
+          name: Deploy .foreverignore file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-master'
+                LOCAL_PATH: '.foreverignore'
       - step:
           name: Unpack tarball via SSH
           script:
