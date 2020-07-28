@@ -1,0 +1,88 @@
+image: node:10.19.0
+
+pipelines:
+  branches:
+    lesson-5/staging:
+      - step:
+        name: Copy staging environment to .env.json
+        script:
+          - cp src/env/.env.staging.json src/env/.env.json
+      - step:
+          name: A REAL build process!
+          caches:
+            - node
+          script:
+            - npm run build
+          artifacts:
+            - build/**
+            - node_modules/**
+            - index.js
+      - step:
+          name: Deploy build folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging/build'
+                LOCAL_PATH: 'build/*'
+      - step:
+          name: Deploy node_modules folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging/node_modules'
+                LOCAL_PATH: 'node_modules/*'
+      - step:
+          name: Deploy index.js file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-staging'
+                LOCAL_PATH: 'index.js'
+    lesson-5/master:
+      - step:
+        name: Copy staging environment to .env.json
+        script:
+          - cp src/env/.env.master.json src/env/.env.json
+      - step:
+          name: A REAL build process!
+          caches:
+            - node
+          script:
+            - npm run build
+          artifacts:
+            - build/**
+            - node_modules/**
+            - index.js
+      - step:
+          name: Deploy build folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-master/build'
+                LOCAL_PATH: 'build/*'
+      - step:
+          name: Deploy node_modules folder to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-master/node_modules'
+                LOCAL_PATH: 'node_modules/*'
+      - step:
+          name: Deploy index.js file to server via SCP
+          script:
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: '/var/www/skillshare-typescript-master'
+                LOCAL_PATH: 'index.js'

@@ -16,6 +16,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
+    "prestart": "cp src/env/.env.develop.json src/env/.env.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
