@@ -1,4 +1,4 @@
-# skillshare-mastering-pipelines
+# Mastering Bitbucket Pipelines for Continuous Deployment and Continuous Integratio
 
 Repository for my Course "Mastering Bitbucket Pipelines for Continuous Deployment and Continuous Integration"
 
